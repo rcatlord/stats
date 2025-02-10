@@ -24,3 +24,14 @@ anscombe_tidy |>
     corr_x_y  = cor(x, y)
   )
 
+# plot data
+ggplot(anscombe_tidy, aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm", fullrange = TRUE, se = FALSE, colour = "#000000" , linewidth = 0.5) +
+  scale_x_continuous(breaks = seq(0,20,5), limits = c(0,20)) +
+  scale_y_continuous(breaks = seq(0,15,5), limits = c(0,NA)) +
+  facet_wrap(vars(set), nrow = 2, labeller = labeller(set = ~ paste("Figure", .x))) +
+  labs(
+    x = NULL, y = NULL,
+    title = "Anscombe's quartet"
+  )
